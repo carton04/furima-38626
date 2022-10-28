@@ -19,17 +19,17 @@
 
 ## itemsテーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| name        | string     | null: false                    |
-| description | string     | null: false                    |
-| category    | integer    | null: false                    |
-| condition   | integer    | null: false                    |
-| cost        | integer    | null: false                    |
-| residence   | integer    | null: false                    |
-| day         | integer    | null: false                    |
-| price       | integer    | null: false                    |
-| user        | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| name          | string     | null: false                    |
+| description   | string     | null: false                    |
+| category_id   | integer    | null: false                    |
+| condition_id  | integer    | null: false                    |
+| cost_id       | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| day_id        | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -47,12 +47,12 @@
 - belongs_to :item
 - has_one :information
 
-## informationsテーブル
+## destinationsテーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| card_number   | string     | null: false                    |
-| prefecture    | integer    | null: false                    |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | string     |                                |
