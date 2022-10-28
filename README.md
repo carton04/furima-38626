@@ -22,7 +22,7 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | name          | string     | null: false                    |
-| description   | string     | null: false                    |
+| description   | text       | null: false                    |
 | category_id   | integer    | null: false                    |
 | condition_id  | integer    | null: false                    |
 | cost_id       | integer    | null: false                    |
