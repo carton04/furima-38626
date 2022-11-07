@@ -19,8 +19,8 @@ class Item < ApplicationRecord
     validates :duration_id
   end
 
-  validates_inclusion_of :price, in: 300..9999999
-  validates :price, numericality: { with: /\A[0-9]+\z/}
+  validates :price, format: { with: /\A[0-9]+\z/ }
+  validates :price, numericality: { only_interger: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   belongs_to :user
   has_one_attached :image
@@ -30,5 +30,4 @@ class Item < ApplicationRecord
   belongs_to :cost
   belongs_to :prefecture
   belongs_to :duration
-
 end
