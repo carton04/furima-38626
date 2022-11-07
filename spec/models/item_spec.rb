@@ -106,7 +106,6 @@ RSpec.describe Item, type: :model do
       it 'priceは半角英語だけでは登録できないこと' do
         @item.price = 'a'
         @item.valid?
-        binding.pry
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'ユーザーが紐付いていなければ投稿できない' do
