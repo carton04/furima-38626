@@ -25,10 +25,10 @@ class OrdersController < ApplicationController
   end
 
   def set_action
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 
   def contributor_confirmation
-    redirect_to root_path unless current_user.id == @item.user.id
+    redirect_to root_path if current_user.id == @item.user.id
   end
 end
