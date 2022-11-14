@@ -1,6 +1,6 @@
 class OrderDestination
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address, :building_name, :phone_number, :order
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address, :building_name, :phone_number, :order, :token
 
   with_options presence: true do
     validates :user_id
@@ -10,6 +10,7 @@ class OrderDestination
     validates :city
     validates :address
     validates :phone_number, numericality: { only_integer: true }
+    validates :token
   end
 
   def save
