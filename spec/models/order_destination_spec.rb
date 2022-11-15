@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe OrderDestination, type: :model do
   before do
-    @order_destination = FactoryBot.build(:order_destination)
+    @item = FactoryBot.create(:item)
+    @user = FactoryBot.create(:user)
+    @order_destination = FactoryBot.build(:order_destination, user_id: @user.id, item_id: @item.id)
   end
 
   describe '購入できるとき' do
@@ -50,6 +52,21 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.phone_number = ''
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Phone number can't be blank")
+      end
+      it '電話番号が9桁以下では保存できないこと' do
+        @order_destination.phone_number = '12345678'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
+      end
+      it '電話番号が12桁以上では保存できないこと' do
+        @order_destination.phone_number = '12345678912345'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
+      end
+      it '電話番号に半角数字以外が含まれている場合は購入できないこと' do
+        @order_destination.phone_number = '123456789aaaa'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
       end
       it "token が空では登録できないこと" do
         @order_destination.token = nil
